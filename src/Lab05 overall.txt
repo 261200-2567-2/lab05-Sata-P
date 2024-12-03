@@ -1,0 +1,140 @@
+Lab05 designed
+
+ overall accessories part
+
+public interface Accessories {
+
+    void repair();
+    void upgrade();
+    void applyEffect(RPGCharacter character);
+
+}
+
+public interface Boot extends Accessories {
+
+    void increaseSpeed();
+
+}
+
+public interface Earring extends Accessories{
+
+    void increaseHealth();
+
+}
+
+public abstract class RPGAccessories implements Accessories {
+
+    private String name;
+    private int durability;
+    private int levelItem;
+    public String getName() }
+    public int getDurability() 
+    public void setDurability(int durability)
+    public int getLevelItem()
+    public void upgrade() 
+    public void repair()
+}
+
+public class Earrings extends RPGAccessories implements Earring{
+    public Earrings(String name) {
+        super(name);
+    }
+    @Override
+    public void increaseHealth()
+    @Override
+    public void applyEffect(RPGCharacter character)
+}
+
+public class Boots extends RPGAccessories implements Boot{
+    public Boots(String name) {
+        super(name);
+    }
+    @Override
+    public void increaseSpeed()
+    @Override
+    public void applyEffect(RPGCharacter character)
+
+}
+
+
+overall character part
+
+public interface Character {
+    void levelUp();
+    void showStat();
+    void showInventory();
+    void equip(RPGAccessories item);
+    int getDmg();
+    int getHp();
+    int getMana();
+    int getSpeed();
+    int getLevel();
+}
+public interface MeleeCharacter extends Character {
+    void meleeAtk(RPGCharacter target);
+}
+public interface RangedAtkCharacter extends Character {
+    void rangedAtk(RPGCharacter target);
+}
+
+
+public abstract class RPGCharacter implements Character{
+    private String name;
+    private int level;
+    private int dmg ;
+    private int hp ;
+    private int speed;
+    private int mana ;
+    private int defense;
+    private RPGAccessories[] bag;
+    private int itemCount;
+
+    public RPGCharacter(String name, int bagSize){
+
+        this.name = name;
+        this.level = 1;
+        this.dmg = 10;
+        this.hp = 100;
+        this.speed = 10;
+        this.mana = 10;
+        this.defense = 10;
+        this.bag = new RPGAccessories[bagSize];
+
+    }
+    public int getLevel()
+    public int getDmg()
+    public int getHp()
+    public int getSpeed()
+    public int getMana()
+    public String getName()
+    public int getDefense()
+    public void showStat()
+    public void levelUp()
+    public void setSpeed(int speed) 
+    public void setHp(int hp)
+    public void showInventory() 
+    @Override
+    public void equip(RPGAccessories item)
+    public void addItemToBag(RPGAccessories item) 
+    public void takeDamage(int Dmg)
+}
+
+public class Paladin extends RPGCharacter implements MeleeCharacter{
+    public Paladin(String name, int bagSize){
+        super(name, bagSize); //using constructor from supertype
+    }
+    public void criticalHit(RPGCharacter target)
+    @Override
+    public void meleeAtk(RPGCharacter target)
+}
+
+public class Archer extends RPGCharacter implements RangedAtkCharacter {
+    public Archer(String name, int bagSize){
+        super(name, bagSize);
+    }
+    @Override
+    public void rangedAtk(RPGCharacter target)
+    public void rapidFire(RPGCharacter target)
+}
+
+
